@@ -1,0 +1,136 @@
+guarde isso para mim: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARG: Computador da CEO</title> <!-- Alteração do título da página -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #001f3f; /* Azul escuro/marinho */
+            color: #ffffff; /* Texto branco para melhor legibilidade */
+            text-align: center;
+            padding: 20px;
+        }
+        #options {
+            margin-top: 20px;
+        }
+        .section {
+            display: none;
+            margin-top: 20px;
+        }
+        .scrollable {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        #backButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Função JavaScript para verificar a senha -->
+    <script>
+        var senhaCorreta = "123";
+
+        function verificarSenha() {
+            var senhaDigitada = document.getElementById("password").value;
+            if (senhaDigitada === senhaCorreta) {
+                // Se a senha estiver correta, mostrar as opções
+                document.getElementById("options").style.display = "block";
+                // Esconder o campo de senha
+                document.getElementById("passwordInput").style.display = "none";
+            } else {
+                // Senha incorreta, forneça feedback ao usuário
+                alert("Senha incorreta. Tente novamente.");
+            }
+        }
+
+        function mostrarSecao(secao) {
+            // Esconder todas as seções
+            var secoes = document.getElementsByClassName("section");
+            for (var i = 0; i < secoes.length; i++) {
+                secoes[i].style.display = "none";
+            }
+            // Mostrar a seção selecionada
+            document.getElementById(secao).style.display = "block";
+        }
+
+        function mostrarTexto(texto) {
+            document.getElementById("textoExibido").innerText = texto;
+            mostrarSecao("textoExibido");
+        }
+
+        function voltar() {
+            // Mostrar as opções novamente
+            document.getElementById("options").style.display = "block";
+            // Esconder as seções
+            var secoes = document.getElementsByClassName("section");
+            for (var i = 0; i < secoes.length; i++) {
+                secoes[i].style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- Adicione um campo de entrada de senha -->
+    <div id="passwordInput">
+        <label for="password">Digite a senha para entrada:</label>
+        <input type="password" id="password" placeholder="Digite a senha">
+        <button onclick="verificarSenha()">Entrar</button>
+    </div>
+
+    <!-- Opções após acertar a senha -->
+    <div id="options" style="display: none;">
+        <h2>Escolha uma opção:</h2>
+        <button onclick="mostrarSecao('documentos')">Documentos</button>
+        <button onclick="mostrarSecao('emails')">Emails</button>
+        <button onclick="mostrarSecao('arquivosConfidenciais')">Arquivos Confidenciais</button>
+    </div>
+
+    <!-- Seção de Documentos -->
+    <div id="documentos" class="section">
+        <h2>Documentos</h2>
+        <div class="scrollable">
+            <button onclick="mostrarTexto('Texto do documento 1.')">Documento 1</button>
+            <button onclick="mostrarTexto('Texto do documento 2.')">Documento 2</button>
+            <button onclick="mostrarTexto('Texto do documento 3.')">Documento 3</button>
+        </div>
+        <br>
+        <button onclick="voltar()">Voltar</button>
+    </div>
+
+    <!-- Seção de Emails -->
+    <div id="emails" class="section">
+        <h2>Emails</h2>
+        <div class="scrollable">
+            <button onclick="mostrarTexto('Mensagem do email 1.')">Email 1</button>
+            <button onclick="mostrarTexto('Mensagem do email 2.')">Email 2</button>
+            <button onclick="mostrarTexto('Mensagem do email 3.')">Email 3</button>
+        </div>
+        <br>
+        <button onclick="voltar()">Voltar</button>
+    </div>
+
+    <!-- Seção de Arquivos Confidenciais -->
+    <div id="arquivosConfidenciais" class="section">
+        <h2>Arquivos Confidenciais</h2>
+        <div class="scrollable">
+            <button onclick="mostrarTexto('Informações confidenciais do Arquivo 1.')">Arquivo 1</button>
+            <button onclick="mostrarTexto('Mais informações confidenciais do Arquivo 2.')">Arquivo 2</button>
+            <button onclick="mostrarTexto('Informações ultra-secretas do Arquivo 3.')">Arquivo 3</button>
+        </div>
+        <br>
+        <button onclick="voltar()">Voltar</button>
+    </div>
+
+    <!-- Seção para exibir o texto -->
+    <div id="textoExibido" class="section">
+        <h2>Texto Exibido</h2>
+        <p id="textoExibido"></p>
+        <br>
+        <button onclick="voltar()">Voltar</button>
+    </div>
+
+</body>
+</html>
